@@ -1,4 +1,5 @@
-```Multithreading in JAVA	
+```
+Multithreading in JAVA	
 
 -Thread can be created using 2 ways , one by extending Thread class and other by implementing Runnable interface. When a class already extends another class then it has to implement Runnable as multiple inheritance is not allowed in java. 
 -If a class implements runnable to then it has to implement its run method as well.
@@ -51,15 +52,26 @@ basically there are 3 main methods which work only inside a synchronized block.
 -Lambda Expression - Now this single abstract method of functional interface can be directly implemented using lambda expression just by (parameter) -> {thingtodo};
 
 -Executor Framework - 
+
 A pool is where all the predefined/ready to work threads are kept. Tasks are allocated to them as per sequence. If all threads are busy then tasks are queued up in a queue. Then sequencially the tasks are provided as per the threads finish their tasks. Sometimes when tasks become more than the queue size in such cases new threads are created to improve efficiency.
 
-Executor interface -> Executor Service interface -> 3 classes -> ThreadPoolExecutor, ForkJoinPool, ScheduledThreadPoolExecutor.  
+Executor interface -> Executor Service interface -> 3 classes -> ThreadPoolExecutor, ForkJoinPool, ScheduledThreadPoolExecutor.  	
 
-ThreadPoolExecutor
+ExecutorService methods - 
+Callable interface can return output a value whereas Runnable cannot.
+
+ExecutorService executor.execute(Runnable interface with method run()) - perform any task of runnable object.
+
+Future<T> f1 = executor.submit(Callable interface with method call()) - same thing just we can return future type output as well. It is async means it can return value after sometime and 		not immediate so we use Future. Future is nothing but a datatype in java that expects output asynchronously. We can see this output using f1.get() -> this method makes the 		thread to wait until value is not obtained.
 
  1. https://www.geeksforgeeks.org/java/what-is-java-executor-framework/
  2. https://youtu.be/ZUWs2U71vvk?si=7ZsqMDQjcqPYjUx8 //best video
- *main method => ExecutorService executor = Executors.newFixedThreadPool(No.ofThreads); - this configures everything of its own so we dont have to provide everything like min max queue     		 size etc. It uses fixed no. of threads and infinite queue.
+
+ThreadPoolExecutor
+-Futures and Callable - https://www.youtube.com/watch?v=VPtaTUSaBOM&list=PLQEaRBV9gAFsR15tNo2QLF9d2qc-c018p&index=56
+
+ *main method => ExecutorService executor = Executors.newFixedThreadPool(No.ofThreads); - this configures everything of its own so we dont have to provide everything like min max queue     
+		 size etc. It uses fixed no. of threads and infinite queue.
  *Another method => ExecutorService executor = Executors.CachedThreadPool() - unlimited threads + No queue. keep alive time for idle queues is 60 sec.
  *Another metho => ExecutorService executor = Executors.SingleThreadPool() - 1 thread + queue
 
@@ -77,7 +89,6 @@ methods - scheculer object
 					eg. ( , 0 , 2, TimeUnit.SECONDS); - task to repeat after every 2 seconds.
 
 
--Futures and Callable - https://www.youtube.com/watch?v=VPtaTUSaBOM&list=PLQEaRBV9gAFsR15tNo2QLF9d2qc-c018p&index=56
 
 
 
