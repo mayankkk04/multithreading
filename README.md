@@ -1,4 +1,4 @@
-Multithreading in JAVA	
+```Multithreading in JAVA	
 
 -Thread can be created using 2 ways , one by extending Thread class and other by implementing Runnable interface. When a class already extends another class then it has to implement Runnable as multiple inheritance is not allowed in java. 
 -If a class implements runnable to then it has to implement its run method as well.
@@ -81,3 +81,4 @@ methods - scheculer object
 
 
 
+```
