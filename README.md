@@ -57,23 +57,30 @@ A pool is where all the predefined/ready to work threads are kept. Tasks are all
 
 Executor interface -> Executor Service interface -> 3 classes -> ThreadPoolExecutor, ForkJoinPool, ScheduledThreadPoolExecutor.  	
 
+IMP - Callable interface can return output a value whereas Runnable cannot. In callable we can catch an exception whereas in runnable we cannot.
+
 ExecutorService methods - 
-Callable interface can return output a value whereas Runnable cannot.
+create thread pool -> ExecutorService executor = Executors.newFixedThreadPool(3); ->
+1.executor.execute(Runnable interface with method run()) - perform any task of runnable object.
 
-ExecutorService executor.execute(Runnable interface with method run()) - perform any task of runnable object.
+2.Future<T> f1 = executor.submit(Callable interface with method call()) - same thing just we can return future type output as well. It is async means it can return value after sometime and 		not immediate so we use Future. Future is nothing but a datatype in java that expects output asynchronously. We can see this output using f1.get() -> this method makes the 		thread to wait until value is not obtained.
+3. Shutdown() - whenever we use executor its necessary to end it using shutdown. This method stops any new tasks but allows the current executing tasks to complete. 
+4. shutdownNow() - suggests to stop everything even the currently running tasks.
+5. invokeAll() - take List<callables> and returns List<Futures>
+6. invokeAny() -
 
-Future<T> f1 = executor.submit(Callable interface with method call()) - same thing just we can return future type output as well. It is async means it can return value after sometime and 		not immediate so we use Future. Future is nothing but a datatype in java that expects output asynchronously. We can see this output using f1.get() -> this method makes the 		thread to wait until value is not obtained.
-
+Videos
  1. https://www.geeksforgeeks.org/java/what-is-java-executor-framework/
  2. https://youtu.be/ZUWs2U71vvk?si=7ZsqMDQjcqPYjUx8 //best video
 
 ThreadPoolExecutor
 -Futures and Callable - https://www.youtube.com/watch?v=VPtaTUSaBOM&list=PLQEaRBV9gAFsR15tNo2QLF9d2qc-c018p&index=56
 
- *main method => ExecutorService executor = Executors.newFixedThreadPool(No.ofThreads); - this configures everything of its own so we dont have to provide everything like min max queue     
+How to create Thread Pools??
+ 1.main method => ExecutorService executor = Executors.newFixedThreadPool(No.ofThreads); - this configures everything of its own so we dont have to provide everything like min max queue     
 		 size etc. It uses fixed no. of threads and infinite queue.
- *Another method => ExecutorService executor = Executors.CachedThreadPool() - unlimited threads + No queue. keep alive time for idle queues is 60 sec.
- *Another metho => ExecutorService executor = Executors.SingleThreadPool() - 1 thread + queue
+ 2.Another method => ExecutorService executor = Executors.CachedThreadPool() - unlimited threads + No queue. keep alive time for idle queues is 60 sec.
+ 3.Another method => ExecutorService executor = Executors.SingleThreadPool() - 1 thread + queue
 
 Types of Queues - ArrayBlockingQueue(limited size), LinkedBlockingQueue(unlimited size)
 
@@ -88,8 +95,13 @@ methods - scheculer object
 	scheduler.scheduleAtFixedRate(() -> {}, time to start, interval after which to repeat everytime, timeunit) 
 					eg. ( , 0 , 2, TimeUnit.SECONDS); - task to repeat after every 2 seconds.
 
+java.util.concurrent package contains 2 classes both used to sync execution of multiple threads.
 
+1.CountDownLatch - helps threads to wait until certain tasks in other threads are finished.
+	method - countDown() - method called by threads to signal that a certain operation or task has been completed. It decreases internal count by 1. latch is released once count becomes 0 then all waiting threads are released. used when a main thread needs to wait for all worker threads to finish using countDown method.
 
+2.CyclicBarrier - allows a set of threads to wait for each other to reach a common barrier point before continuing execution. unlike countDownLatch it can be reset and used again. each thread calls await method which causes it to wait until all parties have arrived at the barrier. 
 
+Semaphore - used for controlling access to shared resources by limiting number of threads that can access the resource concurrently.
 
 ```
