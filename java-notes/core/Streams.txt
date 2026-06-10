@@ -1,0 +1,39 @@
+```
+Streams in JAVA
+Video - https://www.youtube.com/watch?v=-jHyDEXHr_U&list=PLQEaRBV9gAFsR15tNo2QLF9d2qc-c018p&index=39
+
+A stream is a tool for processing a sequence of data through a chain of operations. When u call .stream() it creates a wrapper around collection which uses splitIterator to perform certain tasks.
+
+Source
+	list.stream()
+
+Intermediate Operations
+	.filter(Predicate)- Keeps only elements that match a specific condition.
+	.map(Function)- Transforms each element into something else.
+	.sorted()- Sorts the elements based on natural order or a custom comparator.
+	.distinct()- Removes duplicate items based on .equals().
+	.limit(n) - puts a limit
+	.skip(n) - skips some elements.
+	.peek() - It allows you to view the elements of a stream as they flow through a specific point. mostly used for debugging.
+	.flatMap() - Brings nested levels into one level
+
+Terminal Operations
+	.collect(Collector) - Converts the processed stream back into a List, Set, or Map. Here the list is mutable.
+	.forEach(Consumer) - Performs an action on every element (e.g., printing).
+	.reduce() - Combines all elements into a single summary value (e.g., summing numbers).
+	.count() - Counts the total number of elements remaining in the stream.
+	.toList() - Converts stream to immutable list.
+	.findFirst() - short circuiting - returns first occurrence.
+	.findAny() - same as findFirst but used in parallel streams
+
+Infinite Stream
+	1. Stream.iterate(seed, nextfunction) - depends on perv value eg. (1, x -> x+1). has to limit by .limit(10).
+	2. Stream.generate(Supplier) - does not depend on prev value
+
+Primitive Stream - Already made streams - made using mapToInt and mapToDouble -convert normal stream to Int,Double,Long Streams.
+
+Parallel Streams: 
+By calling .parallelStream() instead of .stream(), Java automatically splits your collection across multiple CPU threads using the ForkJoinPool. This can significantly speed up heavy computations on huge datasets, but introduces overhead for smaller datasets.
+
+
+```
