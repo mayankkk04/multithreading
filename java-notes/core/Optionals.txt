@@ -1,0 +1,24 @@
+```
+Optionals in JAVA
+
+-java.util.Optional<T> class is a container object used to represent the presence or absence of a value. Its primary purpose is to help developers design cleaner APIs and avoid         NullPointerException (NPE) by forcing explicit handling of empty returns.
+- Optional<T> refvar = somefunc(); - this function may or may not return a value thus saves us from nullpointerexception and a lot of checks if the value is null.
+
+-Creating Optional
+
+	1. Optional<T> n = Optional.of(T); -> Throws an immediate NullPointerException if the passed value is null.
+	2. Optional<T> n = Optional.ofNullable(T) -> Safe method that returns a populated Optional if the value exists, or an empty Optional if the value is null.
+	3. Optional.empty(): Returns an empty instance representing a missing value.
+
+-Getting Value from Optional
+	.get() - Avoid calling .get() directly. If the Optional is empty, .get() throws a NoSuchElementException
+	.orElse() - eg. String s = name.orElse("Unknown"); Returns the contained value, or a hardcoded fallback value if empty.
+	.orElseGet(Supplier) - Returns the contained value, or evaluates a lambda function to generate a fallback if empty.
+	.orElseThrow() - Returns the value, or throws an exception if empty (more explicit than .get()).
+
+-Functional Chaining Methods
+	.ifPresent(lambda) - Executes a block of code only if a value is inside the container.
+	.filter(Predicate): Keeps the value if it satisfies a condition; otherwise, converts it to an empty Optional.
+	.map(Function): Transforms the inner value if it exists, automatically wrapping the result back into an Optional.
+
+```
