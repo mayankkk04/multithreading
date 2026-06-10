@@ -1,5 +1,6 @@
 ```
 Multithreading in JAVA	
+
 -Threads share heap memory.
 -Thread can be created using 2 ways , one by extending Thread class and other by implementing Runnable interface. When a class already extends another class then it has to implement Runnable as multiple inheritance is not allowed in java. 
 -If a class implements runnable to then it has to implement its run method as well.
@@ -138,6 +139,9 @@ java.util.concurrent package contains 2 classes both used to sync execution of m
 
 2.CyclicBarrier - allows a set of threads to wait for each other to reach a common barrier point before continuing execution. unlike countDownLatch it can be reset and used again. each thread calls await method which causes it to wait until all parties have arrived at the barrier. 
 
-Semaphore - used for controlling access to shared resources by limiting number of threads that can access the resource concurrently.
+Semaphore - controls how many threads can access a resource simultaneously.
+	acquire() — take a permit
+	release() — return a permit
+	Binary semaphore (1 permit) = basically a mutex/lock
 
 ```
